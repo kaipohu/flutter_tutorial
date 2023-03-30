@@ -25,6 +25,9 @@
 #
 include: package:all_lint_rules_community/all.yaml
 analyzer:
+  plugins:
+    - dart_code_metrics
+
   exclude:
     - "**/*.g.dart"
     - "**/*.gr.dart"
@@ -844,3 +847,96 @@ linter:
     # VG Analysis    disabled : https://pub.dev/packages/very_good_analysis
     # RydMike        disabled : https://gist.github.com/rydmike/fdb53ddd933c37d20e6f3188a936cd4c
     unnecessary_final: false
+
+# Configuration for dart code metrics package to helps analyze and improve the code quality
+dart_code_metrics:
+  anti-patterns:
+    - long-method:
+        exclude:
+          - test/**
+    - long-parameter-list:
+        exclude:
+          - test/**
+  metrics:
+    cyclomatic-complexity: 20
+    maintainability-index: 50
+    maximum-nesting: 5
+    number-of-parameters: 5
+    source-lines-of-code: 50
+    technical-debt:
+      threshold: 16
+      todo-cost: 4
+      ignore-cost: 8
+      ignore-for-file-cost: 16
+      as-dynamic-cost: 16
+      deprecated-annotations-cost: 2
+      file-nullsafety-migration-cost: 2
+      unit-type: "hours"
+  metrics-exclude:
+    - test/src/analyzer_plugin/**
+    - test/src/analyzers/**
+    - test/src/cli/**
+    - test/src/config_builder/**
+    - test/src/helpers/**
+    - test/src/reporters/**
+    - test/src/utils/**
+    - test/resources/*
+    - test/*
+  rules:
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-dynamic:
+        exclude:
+          - test/**
+    - avoid-global-state
+    - avoid-late-keyword:
+        exclude:
+          - test/**
+    - avoid-missing-enum-constant-in-map
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - no-boolean-literal-compare
+    - no-empty-block
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-conditional-expressions
+    - prefer-correct-identifier-length:
+        exceptions:
+          - id
+          - ok
+    - prefer-correct-type-name:
+        max-length: 44
+    - prefer-first
+    - prefer-last
+    - prefer-match-file-name:
+        exclude:
+          - test/**
+    - prefer-moving-to-variable:
+        exclude:
+          - test/**
+    - prefer-trailing-comma
+    - member-ordering:
+        order:
+          - public-constructors
+          - public-fields
+          - private-fields
+          - named-constructors
+          - factory-constructors
+          - overridden-methods
+          - public-methods
+          - private-methods
+        widgets-order:
+          - public-constructors
+          - public-fields
+          - private-fields
+          - named-constructors
+          - factory-constructors
+          - init-state-method
+          - build-method
+          - dispose-method
+          - overridden-methods
+          - public-methods
+          - private-methods
+

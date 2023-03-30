@@ -39,6 +39,8 @@ dependencies:
 dev_dependencies:
   all_lint_rules_community: ^0.0.29
 
+  dart_code_metrics: ^4.19.2
+
   flutter_test:
     sdk: flutter
 
