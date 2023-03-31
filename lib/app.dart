@@ -13,7 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Flutter Tutorial',
       debugShowCheckedModeBanner: false,
       routeInformationProvider: appRouter.routeInfoProvider(),
       routeInformationParser: appRouter.defaultRouteParser(),
