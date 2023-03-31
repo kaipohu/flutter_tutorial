@@ -1,0 +1,9 @@
+# Using include filter speeds up codegen
+# Include more builders and include rules should something fail to generate
+targets:
+  $default:
+    builders:
+      auto_route_generator:autoRouteGenerator:
+        generate_for:
+          include:
+            - lib/routes/app_router.dart
